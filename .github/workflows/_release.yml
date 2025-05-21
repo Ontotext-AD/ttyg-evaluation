@@ -1,0 +1,78 @@
+name: release
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Miniconda
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          activate-environment: ttyg-evaluation
+          environment-file: environment.yml
+          auto-activate-base: false
+
+      - name: Install dependencies with Poetry
+        shell: bash -l {0}
+        run: |
+          conda activate ttyg-evaluation
+          poetry install --no-interaction --with test
+
+      - name: Run tests
+        shell: bash -l {0}
+        run: |
+          conda activate ttyg-evaluation
+          poetry run pytest --cov=ttyg_evaluation --cov-report=term-missing tests/
+
+      - name: Build package
+        shell: bash -l {0}
+        run: |
+          conda activate ttyg-evaluation
+          poetry build
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  publish-testpypi:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Publish to TestPyPI
+        env:
+          TEST_PYPI_TOKEN: ${{ secrets.TEST_PYPI_TOKEN }}
+        run: |
+          poetry config repositories.testpypi https://test.pypi.org/legacy/
+          poetry publish -r testpypi --no-interaction --username __token__ --password $TEST_PYPI_TOKEN
+
+  publish-pypi:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release'
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Publish to PyPI
+        env:
+          PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+        run: |
+          poetry publish --no-interaction --username __token__ --password $PYPI_TOKEN
