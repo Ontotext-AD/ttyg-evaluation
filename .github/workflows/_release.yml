@@ -45,7 +45,7 @@ jobs:
   publish-testpypi:
     needs: build
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    if: github.event_name == 'release'
     steps:
       - name: Download artifact
         uses: actions/download-artifact@v4
@@ -53,10 +53,19 @@ jobs:
           name: dist
           path: dist/
 
+      - name: Set up Miniconda
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          activate-environment: ttyg-evaluation
+          environment-file: environment.yml
+          auto-activate-base: false
+
       - name: Publish to TestPyPI
+        shell: bash -l {0}
         env:
           TEST_PYPI_TOKEN: ${{ secrets.TEST_PYPI_TOKEN }}
         run: |
+          conda activate ttyg-evaluation
           poetry config repositories.testpypi https://test.pypi.org/legacy/
           poetry publish -r testpypi --no-interaction --username __token__ --password $TEST_PYPI_TOKEN
 
@@ -71,8 +80,17 @@ jobs:
           name: dist
           path: dist/
 
+      - name: Set up Miniconda
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          activate-environment: ttyg-evaluation
+          environment-file: environment.yml
+          auto-activate-base: false
+
       - name: Publish to PyPI
+        shell: bash -l {0}
         env:
           PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
         run: |
+          conda activate ttyg-evaluation
           poetry publish --no-interaction --username __token__ --password $PYPI_TOKEN
