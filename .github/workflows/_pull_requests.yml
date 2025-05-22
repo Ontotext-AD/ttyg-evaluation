@@ -1,0 +1,34 @@
+name: tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Miniconda
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          activate-environment: ttyg-evaluation
+          environment-file: environment.yml
+          auto-activate-base: false
+
+      - name: Install dependencies with Poetry
+        shell: bash -l {0}
+        run: |
+          conda activate ttyg-evaluation
+          poetry install --no-interaction --with test
+
+      - name: Run tests
+        shell: bash -l {0}
+        run: |
+          conda activate ttyg-evaluation
+          poetry run pytest --cov=ttyg_evaluation --cov-report=term-missing tests/
