@@ -84,8 +84,10 @@ def compute_aggregations(samples: list[dict]) -> dict:
     number_of_samples_per_template_by_status = defaultdict(lambda: defaultdict(int))
     tools_calls_summary_per_template = defaultdict(lambda: defaultdict(lambda: defaultdict(int)))
 
+    templates_ids = set()
     for sample in samples:
         template_id = sample["template_id"]
+        templates_ids.add(template_id)
 
         if "error" in sample:
             number_of_samples_per_template_by_status[template_id]["error"] += 1
@@ -116,7 +118,7 @@ def compute_aggregations(samples: list[dict]) -> dict:
 
     summary = {"per_template": {}}
 
-    for template_id, entries in results_per_template.items():
+    for template_id in templates_ids:
 
         template_summary: dict[str, Any] = {
             "number_of_error_samples": number_of_samples_per_template_by_status[template_id]["error"],
