@@ -46,6 +46,31 @@ def test_run_evaluation_and_compute_aggregations():
     assert expected_aggregates == aggregates
 
 
+def test_run_evaluation_and_compute_aggregations_all_errors():
+    def get_chat_responses(path: Path) -> dict:
+        responses = dict()
+        with jsonlines.open(path, "r") as reader:
+            for obj in reader:
+                responses[obj["question_id"]] = obj
+        return responses
+
+    sample_gold_standard = json.loads(
+        (Path(__file__).parent / "test_data" / "sample_gold_standard_corpus_1.json").read_text(encoding="utf-8")
+    )
+    sample_chat_responses_path = Path(__file__).parent / "test_data" / "sample_chat_responses_2.jsonl"
+
+    evaluation_results = run_evaluation(sample_gold_standard, get_chat_responses(sample_chat_responses_path))
+    aggregates = compute_aggregations(evaluation_results)
+    expected_evaluation_results = json.loads(
+        (Path(__file__).parent / "test_data" / "sample_evaluation_per_question_2.json").read_text(encoding="utf-8")
+    )
+    assert expected_evaluation_results == evaluation_results
+    expected_aggregates = json.loads(
+        (Path(__file__).parent / "test_data" / "sample_evaluation_summary_2.json").read_text(encoding="utf-8")
+    )
+    assert expected_aggregates == aggregates
+
+
 def test_get_tools_calls_matches():
     expected_calls = [
         [
