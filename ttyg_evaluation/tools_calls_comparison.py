@@ -16,8 +16,8 @@ def compare_tools_outputs(
                 return compare_sparql_results(
                     expected_tool_output,
                     actual_tool_output,
+                    expected_tool["required_columns"],
                     expected_tool.get("ordered", False),
-                    expected_tool.get("optional_vars", [])
                 )
             else:
                 return expected_tool_output == actual_tool_output

@@ -1,7 +1,7 @@
-import json
 from pathlib import Path
 
 import jsonlines
+import yaml
 
 from ttyg_evaluation import (
     stats_for_series,
@@ -29,19 +29,19 @@ def test_run_evaluation_and_compute_aggregations():
                 responses[obj["question_id"]] = obj
         return responses
 
-    sample_gold_standard = json.loads(
-        (Path(__file__).parent / "test_data" / "sample_gold_standard_corpus_1.json").read_text(encoding="utf-8")
+    sample_gold_standard = yaml.safe_load(
+        (Path(__file__).parent / "test_data" / "sample_gold_standard_corpus_1.yaml").read_text(encoding="utf-8")
     )
     sample_chat_responses_path = Path(__file__).parent / "test_data" / "sample_chat_responses_1.jsonl"
 
     evaluation_results = run_evaluation(sample_gold_standard, get_chat_responses(sample_chat_responses_path))
     aggregates = compute_aggregations(evaluation_results)
-    expected_evaluation_results = json.loads(
-        (Path(__file__).parent / "test_data" / "sample_evaluation_per_question_1.json").read_text(encoding="utf-8")
+    expected_evaluation_results = yaml.safe_load(
+        (Path(__file__).parent / "test_data" / "sample_evaluation_per_question_1.yaml").read_text(encoding="utf-8")
     )
     assert expected_evaluation_results == evaluation_results
-    expected_aggregates = json.loads(
-        (Path(__file__).parent / "test_data" / "sample_evaluation_summary_1.json").read_text(encoding="utf-8")
+    expected_aggregates = yaml.safe_load(
+        (Path(__file__).parent / "test_data" / "sample_evaluation_summary_1.yaml").read_text(encoding="utf-8")
     )
     assert expected_aggregates == aggregates
 
@@ -54,19 +54,19 @@ def test_run_evaluation_and_compute_aggregations_all_errors():
                 responses[obj["question_id"]] = obj
         return responses
 
-    sample_gold_standard = json.loads(
-        (Path(__file__).parent / "test_data" / "sample_gold_standard_corpus_1.json").read_text(encoding="utf-8")
+    sample_gold_standard = yaml.safe_load(
+        (Path(__file__).parent / "test_data" / "sample_gold_standard_corpus_1.yaml").read_text(encoding="utf-8")
     )
     sample_chat_responses_path = Path(__file__).parent / "test_data" / "sample_chat_responses_2.jsonl"
 
     evaluation_results = run_evaluation(sample_gold_standard, get_chat_responses(sample_chat_responses_path))
     aggregates = compute_aggregations(evaluation_results)
-    expected_evaluation_results = json.loads(
-        (Path(__file__).parent / "test_data" / "sample_evaluation_per_question_2.json").read_text(encoding="utf-8")
+    expected_evaluation_results = yaml.safe_load(
+        (Path(__file__).parent / "test_data" / "sample_evaluation_per_question_2.yaml").read_text(encoding="utf-8")
     )
     assert expected_evaluation_results == evaluation_results
-    expected_aggregates = json.loads(
-        (Path(__file__).parent / "test_data" / "sample_evaluation_summary_2.json").read_text(encoding="utf-8")
+    expected_aggregates = yaml.safe_load(
+        (Path(__file__).parent / "test_data" / "sample_evaluation_summary_2.yaml").read_text(encoding="utf-8")
     )
     assert expected_aggregates == aggregates
 

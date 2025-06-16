@@ -28,17 +28,17 @@ def run_evaluation(
 ) -> list[dict]:
     evaluation_results = []
     for template in gsc_templates:
-        template_id = template["id"]
+        template_id = template["template_id"]
         actual_tools_calls_count_total, actual_tools_calls_error_total = defaultdict(int), defaultdict(int)
-        for question in template["qaSet"]:
-            actual_results = chat_responses[question["question_id"]]
-            expected_tools_calls = question["tools_calls"]
+        for question in template["questions"]:
+            actual_results = chat_responses[question["id"]]
+            expected_tools_calls = question["expected_steps"]
             if "error" in actual_results:
                 evaluation_results.append({
                     "template_id": template_id,
                     "question_id": actual_results["question_id"],
-                    "question": question["question"],
-                    "expected_tools_calls": expected_tools_calls,
+                    "nl_question": question["nl_question"],
+                    "expected_steps": expected_tools_calls,
                     "error": actual_results["error"],
                 })
                 continue
@@ -54,10 +54,10 @@ def run_evaluation(
             evaluation_results.append({
                 "template_id": template_id,
                 "question_id": actual_results["question_id"],
-                "question": question["question"],
-                "expected_tools_calls": expected_tools_calls,
+                "nl_question": question["nl_question"],
+                "expected_steps": expected_tools_calls,
                 "answer": actual_results["answer"],
-                "agent_tools_calls": actual_tools_calls,
+                "actual_steps": actual_tools_calls,
                 "answer_score": score,
                 "input_tokens": actual_results["input_tokens"],
                 "output_tokens": actual_results["output_tokens"],
@@ -99,7 +99,7 @@ def compute_aggregations(samples: list[dict]) -> dict:
             results_per_template[template_id][series].append(sample[series])
 
         seen = set()
-        for tool in sample["agent_tools_calls"]:
+        for tool in sample["actual_steps"]:
             tool_name = tool["name"]
             tools_calls_summary_per_template[template_id]["total_calls"][tool_name] += 1
             if tool["status"] == "error":

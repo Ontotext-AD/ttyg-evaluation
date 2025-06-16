@@ -27,12 +27,9 @@ def sort_bindings(
 def compare_sparql_results(
         expected_sparql_result: dict,
         actual_sparql_result: dict,
+        required_vars: list[str],
         results_are_ordered: bool = False,
-        optional_vars: list[str] = None,
 ) -> bool:
-    if optional_vars is None:
-        optional_vars = []
-
     expected_bindings: list[dict] = expected_sparql_result["results"]["bindings"]
     actual_bindings: list[dict] = actual_sparql_result["results"]["bindings"]
     expected_vars: list[str] = expected_sparql_result["head"]["vars"]
@@ -40,7 +37,7 @@ def compare_sparql_results(
 
     if not actual_bindings:
         if not expected_bindings:
-            return len(actual_vars) >= len(expected_vars) - len(optional_vars)
+            return len(actual_vars) >= len(required_vars)
         else:
             return False
 
@@ -60,7 +57,7 @@ def compare_sparql_results(
                     mapped_or_skipped_expected_vars.add(expected_var)
                     mapped_actual_vars.add(actual_var)
                     break
-        if expected_var not in mapped_or_skipped_expected_vars and expected_var in optional_vars:
+        if expected_var not in mapped_or_skipped_expected_vars and expected_var not in required_vars:
             mapped_or_skipped_expected_vars.add(expected_var)
 
     return len(mapped_or_skipped_expected_vars) == len(expected_vars)
