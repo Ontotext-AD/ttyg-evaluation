@@ -14,6 +14,7 @@ def test_compare_outputs_sparql_results():
         },
         "output": "{\"head\": {\"vars\": [\"transformer\", \"transformerName\"]}, \"results\": {\"bindings\": [{\"transformer\": {\"type\": \"uri\", \"value\": \"urn:uuid:f1769de8-9aeb-11e5-91da-b8763fd99c5f\"}, \"transformerName\": {\"type\": \"literal\", \"value\": \"OSLO    T2\"}}, {\"transformer\": {\"type\": \"uri\", \"value\": \"urn:uuid:f1769dd6-9aeb-11e5-91da-b8763fd99c5f\"}, \"transformerName\": {\"type\": \"literal\", \"value\": \"OSLO    T1\"}}]}}",
         "output_media_type": "application/sparql-results+json",
+        "required_columns": ["transformer", "transformerName"],
         "ordered": False,
     }
     actual_tool = {

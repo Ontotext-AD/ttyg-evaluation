@@ -218,7 +218,7 @@ def test_compare_empty_sparql_results() -> None:
         "head": {"vars": ["person", "personName"]},
         "results": {"bindings": []}
     }
-    assert compare_sparql_results(expected_sparql_results, actual_sparql_results) == False
+    assert compare_sparql_results(expected_sparql_results, actual_sparql_results, ["personName", "person"]) == False
 
     expected_sparql_results = {
         "head": {"vars": ["person", "personName"]},
@@ -228,7 +228,7 @@ def test_compare_empty_sparql_results() -> None:
         "head": {"vars": ["x", "y"]},
         "results": {"bindings": []}
     }
-    assert compare_sparql_results(expected_sparql_results, actual_sparql_results) == True
+    assert compare_sparql_results(expected_sparql_results, actual_sparql_results, ["personName", "person"]) == True
 
     expected_sparql_results = {
         "head": {"vars": ["person", "personName"]},
@@ -238,7 +238,7 @@ def test_compare_empty_sparql_results() -> None:
         "head": {"vars": ["x", "y", "z"]},
         "results": {"bindings": []}
     }
-    assert compare_sparql_results(expected_sparql_results, actual_sparql_results) == True
+    assert compare_sparql_results(expected_sparql_results, actual_sparql_results, ["personName", "person"]) == True
 
     expected_sparql_results = {
         "head": {"vars": ["person", "personName"]},
@@ -248,7 +248,7 @@ def test_compare_empty_sparql_results() -> None:
         "head": {"vars": ["x"]},
         "results": {"bindings": []}
     }
-    assert compare_sparql_results(expected_sparql_results, actual_sparql_results) == False
+    assert compare_sparql_results(expected_sparql_results, actual_sparql_results, ["personName", "person"]) == False
 
     expected_sparql_results = {
         "head": {"vars": ["person", "personName"]},
@@ -258,7 +258,7 @@ def test_compare_empty_sparql_results() -> None:
         "head": {"vars": ["x"]},
         "results": {"bindings": []}
     }
-    assert compare_sparql_results(expected_sparql_results, actual_sparql_results, optional_vars=["personName"]) == True
+    assert compare_sparql_results(expected_sparql_results, actual_sparql_results, ["person"]) == True
 
 
 def test_compare_sparql_results_exactly_the_same_results_as_expected() -> None:
@@ -277,19 +277,21 @@ def test_compare_sparql_results_exactly_the_same_results_as_expected() -> None:
     }
     actual_sparql_results = copy.deepcopy(expected_sparql_results)
 
-    assert compare_sparql_results(expected_sparql_results, actual_sparql_results) == True
-    assert compare_sparql_results(expected_sparql_results, actual_sparql_results, results_are_ordered=True) == True
-
-    optional_vars = ["person"]
-    assert compare_sparql_results(expected_sparql_results, actual_sparql_results, optional_vars=optional_vars) == True
+    assert compare_sparql_results(expected_sparql_results, actual_sparql_results, ["person", "personName"]) == True
     assert compare_sparql_results(
-        expected_sparql_results, actual_sparql_results, optional_vars=optional_vars, results_are_ordered=True
+        expected_sparql_results, actual_sparql_results, ["person", "personName"], results_are_ordered=True
     ) == True
 
-    optional_vars = ["person", "personName"]
-    assert compare_sparql_results(expected_sparql_results, actual_sparql_results, optional_vars=optional_vars) == True
+    required_columns = ["personName"]
+    assert compare_sparql_results(expected_sparql_results, actual_sparql_results, required_columns) == True
     assert compare_sparql_results(
-        expected_sparql_results, actual_sparql_results, optional_vars=optional_vars, results_are_ordered=True
+        expected_sparql_results, actual_sparql_results, required_columns, results_are_ordered=True
+    ) == True
+
+    required_columns = []
+    assert compare_sparql_results(expected_sparql_results, actual_sparql_results, required_columns) == True
+    assert compare_sparql_results(
+        expected_sparql_results, actual_sparql_results, required_columns, results_are_ordered=True
     ) == True
 
 
@@ -321,19 +323,21 @@ def test_compare_sparql_results_same_results_as_expected_but_variables_are_renam
         ]}
     }
 
-    assert compare_sparql_results(expected_sparql_results, actual_sparql_results) == True
-    assert compare_sparql_results(expected_sparql_results, actual_sparql_results, results_are_ordered=True) == True
-
-    optional_vars = ["person"]
-    assert compare_sparql_results(expected_sparql_results, actual_sparql_results, optional_vars=optional_vars) == True
+    assert compare_sparql_results(expected_sparql_results, actual_sparql_results, ["person", "personName"]) == True
     assert compare_sparql_results(
-        expected_sparql_results, actual_sparql_results, optional_vars=optional_vars, results_are_ordered=True
+        expected_sparql_results, actual_sparql_results, ["person", "personName"], results_are_ordered=True
     ) == True
 
-    optional_vars = ["person", "personName"]
-    assert compare_sparql_results(expected_sparql_results, actual_sparql_results, optional_vars=optional_vars) == True
+    required_columns = ["personName"]
+    assert compare_sparql_results(expected_sparql_results, actual_sparql_results, required_columns) == True
     assert compare_sparql_results(
-        expected_sparql_results, actual_sparql_results, optional_vars=optional_vars, results_are_ordered=True
+        expected_sparql_results, actual_sparql_results, required_columns, results_are_ordered=True
+    ) == True
+
+    required_columns = []
+    assert compare_sparql_results(expected_sparql_results, actual_sparql_results, required_columns) == True
+    assert compare_sparql_results(
+        expected_sparql_results, actual_sparql_results, required_columns, results_are_ordered=True
     ) == True
 
 
@@ -358,7 +362,7 @@ def test_compare_sparql_results_equals_one_binding() -> None:
             }
         ]}
     }
-    assert compare_sparql_results(expected_sparql_results, actual_sparql_results) == True
+    assert compare_sparql_results(expected_sparql_results, actual_sparql_results, ["average_person_age"]) == True
 
 
 def test_compare_sparql_results_not_equals() -> None:
@@ -388,8 +392,10 @@ def test_compare_sparql_results_not_equals() -> None:
             }
         ]}
     }
-    assert compare_sparql_results(expected_sparql_results, actual_sparql_results) == False
-    assert compare_sparql_results(expected_sparql_results, actual_sparql_results, results_are_ordered=True) == False
+    assert compare_sparql_results(expected_sparql_results, actual_sparql_results, ["person", "personName"]) == False
+    assert compare_sparql_results(
+        expected_sparql_results, actual_sparql_results, ["person", "personName"], results_are_ordered=True
+    ) == False
 
 
 def test_compare_sparql_results_different_order() -> None:
@@ -419,8 +425,10 @@ def test_compare_sparql_results_different_order() -> None:
             }
         ]}
     }
-    assert compare_sparql_results(expected_sparql_results, actual_sparql_results) == True
-    assert compare_sparql_results(expected_sparql_results, actual_sparql_results, results_are_ordered=True) == False
+    assert compare_sparql_results(expected_sparql_results, actual_sparql_results, ["person", "personName"]) == True
+    assert compare_sparql_results(
+        expected_sparql_results, actual_sparql_results, ["person", "personName"], results_are_ordered=True
+    ) == False
 
 
 def test_compare_sparql_results_different_order_optional_columns() -> None:
@@ -454,11 +462,11 @@ def test_compare_sparql_results_different_order_optional_columns() -> None:
             }
         ]}
     }
-    optional_vars = ["personName"]
-    assert compare_sparql_results(expected_sparql_results, actual_sparql_results, optional_vars=optional_vars) == True
+    required_columns = ["person", "personAge"]
+    assert compare_sparql_results(expected_sparql_results, actual_sparql_results, required_columns) == True
     assert compare_sparql_results(
         expected_sparql_results, actual_sparql_results,
-        optional_vars=optional_vars, results_are_ordered=True
+        required_columns, results_are_ordered=True
     ) == False
 
 
@@ -483,7 +491,7 @@ def test_compare_sparql_results_empty_binding_values() -> None:
             {"c": {"type": "uri", "value": "http://example.com/Person/5"}, "p": {"type": "literal", "value": "A"}},
         ]}
     }
-    assert compare_sparql_results(expected_sparql_results, actual_sparql_results) == False
+    assert compare_sparql_results(expected_sparql_results, actual_sparql_results, ["x", "y"]) == False
 
     expected_sparql_results = {
         "head": {"vars": ["x", "y"]},
@@ -505,4 +513,4 @@ def test_compare_sparql_results_empty_binding_values() -> None:
             {"x": {"type": "uri", "value": "http://example.com/Person/5"}, "y": {"type": "literal", "value": "A"}},
         ]}
     }
-    assert compare_sparql_results(expected_sparql_results, actual_sparql_results) == True
+    assert compare_sparql_results(expected_sparql_results, actual_sparql_results, ["x", "y"]) == True
