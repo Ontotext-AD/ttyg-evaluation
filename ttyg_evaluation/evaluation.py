@@ -123,7 +123,10 @@ def compute_aggregations(samples: list[dict]) -> dict:
         template_summary: dict[str, Any] = {
             "number_of_error_samples": number_of_samples_per_template_by_status[template_id]["error"],
             "number_of_success_samples": number_of_samples_per_template_by_status[template_id]["success"],
-            "tools_calls": tools_calls_summary_per_template[template_id],
+            "tools_calls": {
+                k1: {k2: v2 for k2, v2 in v1.items()}
+                for k1, v1 in tools_calls_summary_per_template[template_id].items()
+            },
         }
         for series in data_series:
             template_summary.update({
