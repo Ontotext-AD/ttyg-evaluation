@@ -1,0 +1,26 @@
+- - args:
+      query: KRISTIANSAND
+    name: iri_discovery
+    output: urn:uuid:47eb7c31-d0f6-11e7-9f7b-b46d83638f70
+    output_media_type: text/uri
+    required_columns:
+    - uri
+- - args:
+      query: 'SELECT ?voltagelevel WHERE {
+
+        ?voltagelevel a cim:VoltageLevel ;
+
+        cim:ConnectivityNodeContainer.ConnectivityNodes/cim:ConnectivityNode.TopologicalNode
+        <urn:uuid:47eb7c31-d0f6-11e7-9f7b-b46d83638f70> .
+
+        <urn:uuid:47eb7c31-d0f6-11e7-9f7b-b46d83638f70> a cim:TopologicalNode ;
+
+        .
+
+        }'
+    name: sparql_query
+    output: '{"head": {"vars": ["voltagelevel"]}, "results": {"bindings": [{"voltagelevel":
+      {"type": "uri", "value": "urn:uuid:f1769660-9aeb-11e5-91da-b8763fd99c5f"}}]}}'
+    output_media_type: application/sparql-results+json
+    required_columns:
+    - voltagelevel

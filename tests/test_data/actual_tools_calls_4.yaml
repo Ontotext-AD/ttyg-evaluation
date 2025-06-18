@@ -1,0 +1,59 @@
+- args:
+    query: KRISTIANSAND
+  id: call_w2ogNzQNogvvQ0wstj4SYWNr
+  name: autocomplete_search
+  output: "{\n  \"head\": {\n    \"vars\": [\n      \"iri\",\n      \"name\",\n  \
+    \    \"rank\"\n    ]\n  },\n  \"results\": {\n    \"bindings\": [\n      {\n \
+    \       \"iri\": {\n          \"type\": \"uri\",\n          \"value\": \"urn:uuid:4711f609-dbe8-4738-83f6-be4de1ef2b7d\"\
+    \n        },\n        \"name\": {\n          \"type\": \"literal\",\n        \
+    \  \"value\": \"Kristiansand Substation\"\n        },\n        \"rank\": {\n \
+    \         \"datatype\": \"http://www.w3.org/2001/XMLSchema#float\",\n        \
+    \  \"type\": \"literal\",\n          \"value\": \"0.14035\"\n        }\n     \
+    \ },\n      {\n        \"iri\": {\n          \"type\": \"uri\",\n          \"\
+    value\": \"urn:uuid:f176965a-9aeb-11e5-91da-b8763fd99c5f\"\n        },\n     \
+    \   \"name\": {\n          \"type\": \"literal\",\n          \"value\": \"KRISTIANSAND\"\
+    \n        },\n        \"rank\": {\n          \"datatype\": \"http://www.w3.org/2001/XMLSchema#float\"\
+    ,\n          \"type\": \"literal\",\n          \"value\": \"0.02799\"\n      \
+    \  }\n      },\n      {\n        \"iri\": {\n          \"type\": \"uri\",\n  \
+    \        \"value\": \"urn:uuid:47eb7c2a-d0f6-11e7-9f7b-b46d83638f70\"\n      \
+    \  },\n        \"name\": {\n          \"type\": \"literal\",\n          \"value\"\
+    : \"KRISTIANSAND\"\n        },\n        \"rank\": {\n          \"datatype\": \"\
+    http://www.w3.org/2001/XMLSchema#float\",\n          \"type\": \"literal\",\n\
+    \          \"value\": \"0.01232\"\n        }\n      },\n      {\n        \"iri\"\
+    : {\n          \"type\": \"uri\",\n          \"value\": \"urn:uuid:47eb7c2e-d0f6-11e7-9f7b-b46d83638f70\"\
+    \n        },\n        \"name\": {\n          \"type\": \"literal\",\n        \
+    \  \"value\": \"KRISTIANSAND\"\n        },\n        \"rank\": {\n          \"\
+    datatype\": \"http://www.w3.org/2001/XMLSchema#float\",\n          \"type\": \"\
+    literal\",\n          \"value\": \"0.00217\"\n        }\n      },\n      {\n \
+    \       \"iri\": {\n          \"type\": \"uri\",\n          \"value\": \"urn:uuid:47eb7c2f-d0f6-11e7-9f7b-b46d83638f70\"\
+    \n        },\n        \"name\": {\n          \"type\": \"literal\",\n        \
+    \  \"value\": \"KRISTIANSAND\"\n        },\n        \"rank\": {\n          \"\
+    datatype\": \"http://www.w3.org/2001/XMLSchema#float\",\n          \"type\": \"\
+    literal\",\n          \"value\": \"0.00217\"\n        }\n      }\n    ]\n  }\n\
+    }"
+  status: success
+- args:
+    query: ASK { <urn:uuid:f176965a-9aeb-11e5-91da-b8763fd99c5f> a cim:TopologicalNode
+      . }
+  id: call_4TwSnWTAFWDvau5YLjXwEXvg
+  name: sparql_query
+  output: "{\n  \"head\": {},\n  \"boolean\": false\n}"
+  status: success
+- args:
+    query: ASK { <urn:uuid:47eb7c2a-d0f6-11e7-9f7b-b46d83638f70> a cim:TopologicalNode
+      . }
+  id: call_q8nvxH6Gb1cR4p8avfyuSCDY
+  name: sparql_query
+  output: "{\n  \"head\": {},\n  \"boolean\": true\n}"
+  status: success
+- args:
+    query: SELECT ?voltageLevel WHERE { <urn:uuid:47eb7c2a-d0f6-11e7-9f7b-b46d83638f70>
+      cim:TopologicalNode.ConnectivityNodeContainer ?voltageLevel . ?voltageLevel
+      a cim:VoltageLevel . }
+  id: call_3qJK186HZj1twnr6x976slHN
+  name: sparql_query
+  output: "{\n  \"head\": {\n    \"vars\": [\n      \"voltageLevel\"\n    ]\n  },\n\
+    \  \"results\": {\n    \"bindings\": [\n      {\n        \"voltageLevel\": {\n\
+    \          \"type\": \"uri\",\n          \"value\": \"urn:uuid:f1769660-9aeb-11e5-91da-b8763fd99c5f\"\
+    \n        }\n      }\n    ]\n  }\n}"
+  status: success

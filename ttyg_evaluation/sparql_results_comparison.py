@@ -30,10 +30,19 @@ def compare_sparql_results(
         required_vars: list[str],
         results_are_ordered: bool = False,
 ) -> bool:
+    # DESCRIBE results
+    if isinstance(actual_sparql_result, str):
+        return False
+
+    # ASK
+    if "boolean" in expected_sparql_result:
+        return "boolean" in actual_sparql_result and \
+            expected_sparql_result["boolean"] == actual_sparql_result["boolean"]
+
     expected_bindings: list[dict] = expected_sparql_result["results"]["bindings"]
-    actual_bindings: list[dict] = actual_sparql_result["results"]["bindings"]
+    actual_bindings: list[dict] = actual_sparql_result.get("results", dict()).get("bindings", [])
     expected_vars: list[str] = expected_sparql_result["head"]["vars"]
-    actual_vars: list[str] = actual_sparql_result["head"]["vars"]
+    actual_vars: list[str] = actual_sparql_result["head"].get("vars", [])
 
     if not actual_bindings:
         if not expected_bindings:

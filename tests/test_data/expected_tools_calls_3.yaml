@@ -1,0 +1,40 @@
+- - args:
+      query: 2dd90159-bdfb-11e5-94fa-c8f73332c8f4
+    name: iri_discovery
+    output: urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4
+    output_media_type: text/uri
+    required_columns:
+    - uri
+  - args:
+      query: f17696da
+    name: iri_discovery
+    output: urn:uuid:f17696da-9aeb-11e5-91da-b8763fd99c5f
+    output_media_type: text/uri
+    required_columns:
+    - uri
+- - args:
+      query: 'SELECT ?voltagelevel WHERE {
+
+        ?voltagelevel a cim:VoltageLevel ;
+
+        cim:VoltageLevel.BaseVoltage <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+        ;
+
+        cim:VoltageLevel.Substation <urn:uuid:f17696da-9aeb-11e5-91da-b8763fd99c5f>
+        .
+
+        <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4> a cim:BaseVoltage ;
+
+        .
+
+        <urn:uuid:f17696da-9aeb-11e5-91da-b8763fd99c5f> a cim:Substation ;
+
+        .
+
+        }'
+    name: sparql_query
+    output: '{"head": {"vars": ["voltagelevel"]}, "results": {"bindings": [{"voltagelevel":
+      {"type": "uri", "value": "urn:uuid:f17696dc-9aeb-11e5-91da-b8763fd99c5f"}}]}}'
+    output_media_type: application/sparql-results+json
+    required_columns:
+    - voltagelevel

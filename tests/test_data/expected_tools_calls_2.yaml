@@ -1,0 +1,29 @@
+- - args:
+      query: DAGALI
+    name: iri_discovery
+    output: urn:uuid:f1769614-9aeb-11e5-91da-b8763fd99c5f
+    output_media_type: text/uri
+    required_columns:
+    - uri
+- - args:
+      query: 'SELECT ?line WHERE {
+
+        ?line a cim:Line ;
+
+        cimr:connectedThroughPart <urn:uuid:f1769614-9aeb-11e5-91da-b8763fd99c5f>
+        .
+
+        <urn:uuid:f1769614-9aeb-11e5-91da-b8763fd99c5f> a cim:Substation ;
+
+        .
+
+        }'
+    name: sparql_query
+    output: '{"head": {"vars": ["line"]}, "results": {"bindings": [{"line": {"type":
+      "uri", "value": "urn:uuid:4d521d6f-d6c7-0f45-b963-c02615a150b9"}}, {"line":
+      {"type": "uri", "value": "urn:uuid:c5f535a5-f053-a948-9cee-f6a7b07c7d4f"}},
+      {"line": {"type": "uri", "value": "urn:uuid:28e8bca7-a94f-cc45-9b85-7c872de68a17"}},
+      {"line": {"type": "uri", "value": "urn:uuid:83f55d5f-90cd-da41-82ac-86783a45ab16"}}]}}'
+    output_media_type: application/sparql-results+json
+    required_columns:
+    - line
