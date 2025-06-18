@@ -149,3 +149,46 @@ def test_get_tools_calls_matches():
     assert compute_answer_score(expected_calls, actual_calls) == 0.5
     assert expected_calls[-1][0]["matches"] == "4"
     assert "matches" not in expected_calls[-1][1]
+
+
+def test_compute_answer_score_expected_select_actual_ask():
+    expected_calls = yaml.safe_load(
+        (Path(__file__).parent / "test_data" / "expected_tools_calls_1.yaml").read_text(encoding="utf-8")
+    )
+    actual_calls = yaml.safe_load(
+        (Path(__file__).parent / "test_data" / "actual_tools_calls_1.yaml").read_text(encoding="utf-8")
+    )
+    assert compute_answer_score(expected_calls, actual_calls) == 0
+    assert "matches" not in expected_calls[-1][0]
+
+    expected_calls = yaml.safe_load(
+        (Path(__file__).parent / "test_data" / "expected_tools_calls_2.yaml").read_text(encoding="utf-8")
+    )
+    actual_calls = yaml.safe_load(
+        (Path(__file__).parent / "test_data" / "actual_tools_calls_2.yaml").read_text(encoding="utf-8")
+    )
+    assert compute_answer_score(expected_calls, actual_calls) == 0
+    assert "matches" not in expected_calls[-1][0]
+
+
+def test_compute_answer_score_expected_select_actual_describe():
+    expected_calls = yaml.safe_load(
+        (Path(__file__).parent / "test_data" / "expected_tools_calls_3.yaml").read_text(encoding="utf-8")
+    )
+    actual_calls = yaml.safe_load(
+        (Path(__file__).parent / "test_data" / "actual_tools_calls_3.yaml").read_text(encoding="utf-8")
+    )
+    assert compute_answer_score(expected_calls, actual_calls) == 0
+    assert "matches" not in expected_calls[-1][0]
+
+
+def test_compute_answer_score_expected_select_actual_ask_and_then_select():
+    expected_calls = yaml.safe_load(
+        (Path(__file__).parent / "test_data" / "expected_tools_calls_4.yaml").read_text(encoding="utf-8")
+    )
+    actual_calls = yaml.safe_load(
+        (Path(__file__).parent / "test_data" / "actual_tools_calls_4.yaml").read_text(encoding="utf-8")
+    )
+    assert compute_answer_score(expected_calls, actual_calls) == 1
+    assert "matches" in expected_calls[-1][0]
+    assert expected_calls[-1][0]["matches"] == "call_3qJK186HZj1twnr6x976slHN"

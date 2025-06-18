@@ -1,0 +1,206 @@
+- args:
+    query: SELECT ?voltageLevel WHERE { ?voltageLevel cim:VoltageLevel.BaseVoltage
+      <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4> . ?voltageLevel cim:VoltageLevel.Substation
+      <urn:uuid:f17696da> . }
+  id: call_QlgXRgY0h9JUbdbQy6AMpz2A
+  name: sparql_query
+  output: "Error: ValueError('The following IRIs are not used in the data stored in\
+    \ GraphDB: <urn:uuid:f17696da>')\n Please fix your mistakes."
+  status: error
+- args:
+    query: DESCRIBE <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+  id: call_IlNtTmrnYHP7gYCRCpHoWN2I
+  name: sparql_query
+  output: '"@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n@prefix
+    rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n@prefix rdf4j: <http://rdf4j.org/schema/rdf4j#>
+    .\n@prefix sesame: <http://www.openrdf.org/schema/sesame#> .\n@prefix owl: <http://www.w3.org/2002/07/owl#>
+    .\n@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n@prefix fn: <http://www.w3.org/2005/xpath-functions#>
+    .\n\n<urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4> a <https://cim.ucaiug.io/ns#IdentifiedObject>,\n    <https://cim.ucaiug.io/ns#BaseVoltage>;\n  <https://cim.ucaiug.io/ns#IdentifiedObject.mRID>
+    \"2dd90159-bdfb-11e5-94fa-c8f73332c8f4\";\n  <https://cim.ucaiug.io/ns#IdentifiedObject.name>
+    \"420kV\";\n  <https://cim.ucaiug.io/ns#BaseVoltage.ConductingEquipment> <urn:uuid:f1769c50-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f1769a4c-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f1769d64-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f1769c14-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f1769d70-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f1769b54-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f1769bc0-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f1769ad0-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f1769b78-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f1769d28-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f1769b0c-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f1769a58-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f1769b60-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f1769b48-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f1769b6c-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f1769c98-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f1769b00-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f1769c80-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f1769c8c-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f1769d34-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f1769ae8-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f1769ab8-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f1769a7c-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f1769aac-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f1769a94-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:4d89c650-5698-2e43-849b-ff65a7251f9c>,
+    <urn:uuid:f1769af4-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f1769aa0-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f1769c2c-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f1769a64-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f1769bde-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f1769a88-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f1769b24-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f1769b18-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f1769c44-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f1769c38-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f1769caa-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f1769bb4-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f1769adc-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f1769b84-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f1769a39-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f1769d58-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f1769a70-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f1769bea-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f1769bcc-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f1769d40-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f1769c08-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f1769b3c-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f1769bf6-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f1769ac4-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f1769c5c-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f1769d4c-9aeb-11e5-91da-b8763fd99c5f>;\n  <https://cim.ucaiug.io/ns#BaseVoltage.TransformerEnds>
+    <urn:uuid:2dd9046f-bdfb-11e5-94fa-c8f73332c8f4>,\n    <urn:uuid:2dd9045a-bdfb-11e5-94fa-c8f73332c8f4>,
+    <urn:uuid:2dd90468-bdfb-11e5-94fa-c8f73332c8f4>,\n    <urn:uuid:2dd9044f-bdfb-11e5-94fa-c8f73332c8f4>,
+    <urn:uuid:2dd9047d-bdfb-11e5-94fa-c8f73332c8f4>,\n    <urn:uuid:2dd90445-bdfb-11e5-94fa-c8f73332c8f4>,
+    <urn:uuid:2dd9048b-bdfb-11e5-94fa-c8f73332c8f4>,\n    <urn:uuid:2dd90448-bdfb-11e5-94fa-c8f73332c8f4>,
+    <urn:uuid:2dd90476-bdfb-11e5-94fa-c8f73332c8f4>,\n    <urn:uuid:2dd9043e-bdfb-11e5-94fa-c8f73332c8f4>,
+    <urn:uuid:2dd90461-bdfb-11e5-94fa-c8f73332c8f4>,\n    <urn:uuid:2dd90484-bdfb-11e5-94fa-c8f73332c8f4>;\n  <https://cim.ucaiug.io/ns#BaseVoltage.VoltageLevel>
+    <urn:uuid:f176966c-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f17695e7-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f1769644-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f17696dc-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f17696aa-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f17696ba-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f17695ba-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f1769656-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f1769610-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f1769638-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f17695ce-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f17695ed-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f1769620-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f17696c6-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f17696b4-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f17695f3-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f17696d6-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f17695b0-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f17696c0-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f17695c4-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f176962c-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f17696d0-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f176964a-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f17695d4-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f176968a-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:1f4fabd4-8c57-c245-b107-4e64c9007ae3>,
+    <urn:uuid:f176961a-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f17695e1-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f1769632-9aeb-11e5-91da-b8763fd99c5f>;\n  <https://cim.ucaiug.io/ns#BaseVoltage.nominalVoltage>
+    \"420\"^^xsd:float;\n  <https://cim.ucaiug.io/ns#BaseVoltage.TopologicalNode>
+    <urn:uuid:f17695bf-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f1769637-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f17696cb-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f176962b-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f1769689-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f17696c5-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f1769649-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f1769615-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f17695f2-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f17696af-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f17695c9-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f176966b-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f1769655-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f17695e0-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f176960f-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f17695d3-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f17696bf-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f17695ec-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f176961f-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f17695e6-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f1769643-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f17696db-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f17696a9-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f17696b9-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f17695b9-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:f17696d5-9aeb-11e5-91da-b8763fd99c5f>,
+    <urn:uuid:f17695ab-9aeb-11e5-91da-b8763fd99c5f>,\n    <urn:uuid:47eb7c25-d0f6-11e7-9f7b-b46d83638f70>,
+    <urn:uuid:f1769631-9aeb-11e5-91da-b8763fd99c5f>;\n  <https://cim.ucaiug.io/rules#mridSignificantPart>
+    \"2dd90159\" .\n\n<urn:uuid:f1769c50-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769a4c-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769d64-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769c14-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769d70-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769b54-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769bc0-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769ad0-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769b78-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769d28-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769b0c-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769a58-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769b60-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769b48-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769b6c-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769c98-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769b00-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769c80-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769c8c-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769d34-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769ae8-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769ab8-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769a7c-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769aac-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769a94-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:4d89c650-5698-2e43-849b-ff65a7251f9c> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769af4-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769aa0-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769c2c-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769a64-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769bde-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769a88-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769b24-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769b18-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769c44-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769c38-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769caa-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769bb4-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769adc-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769b84-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769a39-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769d58-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769a70-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769bea-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769bcc-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769d40-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769c08-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769b3c-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769bf6-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769ac4-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769c5c-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769d4c-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#ConductingEquipment.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:2dd9046f-bdfb-11e5-94fa-c8f73332c8f4> <https://cim.ucaiug.io/ns#TransformerEnd.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:2dd9045a-bdfb-11e5-94fa-c8f73332c8f4> <https://cim.ucaiug.io/ns#TransformerEnd.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:2dd90468-bdfb-11e5-94fa-c8f73332c8f4> <https://cim.ucaiug.io/ns#TransformerEnd.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:2dd9044f-bdfb-11e5-94fa-c8f73332c8f4> <https://cim.ucaiug.io/ns#TransformerEnd.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:2dd9047d-bdfb-11e5-94fa-c8f73332c8f4> <https://cim.ucaiug.io/ns#TransformerEnd.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:2dd90445-bdfb-11e5-94fa-c8f73332c8f4> <https://cim.ucaiug.io/ns#TransformerEnd.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:2dd9048b-bdfb-11e5-94fa-c8f73332c8f4> <https://cim.ucaiug.io/ns#TransformerEnd.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:2dd90448-bdfb-11e5-94fa-c8f73332c8f4> <https://cim.ucaiug.io/ns#TransformerEnd.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:2dd90476-bdfb-11e5-94fa-c8f73332c8f4> <https://cim.ucaiug.io/ns#TransformerEnd.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:2dd9043e-bdfb-11e5-94fa-c8f73332c8f4> <https://cim.ucaiug.io/ns#TransformerEnd.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:2dd90461-bdfb-11e5-94fa-c8f73332c8f4> <https://cim.ucaiug.io/ns#TransformerEnd.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:2dd90484-bdfb-11e5-94fa-c8f73332c8f4> <https://cim.ucaiug.io/ns#TransformerEnd.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f176966c-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#VoltageLevel.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f17695e7-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#VoltageLevel.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769644-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#VoltageLevel.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f17696dc-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#VoltageLevel.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f17696aa-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#VoltageLevel.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f17696ba-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#VoltageLevel.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f17695ba-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#VoltageLevel.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769656-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#VoltageLevel.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769610-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#VoltageLevel.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769638-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#VoltageLevel.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f17695ce-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#VoltageLevel.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f17695ed-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#VoltageLevel.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769620-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#VoltageLevel.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f17696c6-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#VoltageLevel.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f17696b4-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#VoltageLevel.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f17695f3-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#VoltageLevel.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f17696d6-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#VoltageLevel.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f17695b0-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#VoltageLevel.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f17696c0-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#VoltageLevel.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f17695c4-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#VoltageLevel.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f176962c-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#VoltageLevel.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f17696d0-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#VoltageLevel.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f176964a-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#VoltageLevel.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f17695d4-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#VoltageLevel.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f176968a-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#VoltageLevel.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:1f4fabd4-8c57-c245-b107-4e64c9007ae3> <https://cim.ucaiug.io/ns#VoltageLevel.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f176961a-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#VoltageLevel.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f17695e1-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#VoltageLevel.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769632-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#VoltageLevel.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f17695bf-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#TopologicalNode.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769637-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#TopologicalNode.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f17696cb-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#TopologicalNode.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f176962b-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#TopologicalNode.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769689-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#TopologicalNode.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f17696c5-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#TopologicalNode.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769649-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#TopologicalNode.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769615-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#TopologicalNode.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f17695f2-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#TopologicalNode.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f17696af-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#TopologicalNode.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f17695c9-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#TopologicalNode.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f176966b-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#TopologicalNode.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769655-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#TopologicalNode.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f17695e0-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#TopologicalNode.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f176960f-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#TopologicalNode.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f17695d3-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#TopologicalNode.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f17696bf-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#TopologicalNode.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f17695ec-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#TopologicalNode.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f176961f-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#TopologicalNode.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f17695e6-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#TopologicalNode.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769643-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#TopologicalNode.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f17696db-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#TopologicalNode.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f17696a9-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#TopologicalNode.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f17696b9-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#TopologicalNode.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f17695b9-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#TopologicalNode.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f17696d5-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#TopologicalNode.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f17695ab-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#TopologicalNode.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:47eb7c25-d0f6-11e7-9f7b-b46d83638f70> <https://cim.ucaiug.io/ns#TopologicalNode.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n\n<urn:uuid:f1769631-9aeb-11e5-91da-b8763fd99c5f> <https://cim.ucaiug.io/ns#TopologicalNode.BaseVoltage>\n    <urn:uuid:2dd90159-bdfb-11e5-94fa-c8f73332c8f4>
+    .\n"'
+  status: success

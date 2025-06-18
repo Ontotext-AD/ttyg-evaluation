@@ -1,0 +1,26 @@
+- - args:
+      query: RINGHALS
+    name: iri_discovery
+    output: urn:uuid:f17695f2-9aeb-11e5-91da-b8763fd99c5f
+    output_media_type: text/uri
+    required_columns:
+    - uri
+- - args:
+      query: 'SELECT ?busbarsection WHERE {
+
+        ?busbarsection a cim:BusbarSection ;
+
+        cim:ConductingEquipment.Terminals/cim:Terminal.TopologicalNode <urn:uuid:f17695f2-9aeb-11e5-91da-b8763fd99c5f>
+        .
+
+        <urn:uuid:f17695f2-9aeb-11e5-91da-b8763fd99c5f> a cim:TopologicalNode ;
+
+        .
+
+        }'
+    name: sparql_query
+    output: '{"head": {"vars": ["busbarsection"]}, "results": {"bindings": [{"busbarsection":
+      {"type": "uri", "value": "urn:uuid:2dd90170-bdfb-11e5-94fa-c8f73332c8f4"}}]}}'
+    output_media_type: application/sparql-results+json
+    required_columns:
+    - busbarsection

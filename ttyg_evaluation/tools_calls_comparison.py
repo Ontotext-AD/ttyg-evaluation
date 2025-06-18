@@ -36,7 +36,7 @@ def match_group_by_output(
     expected_group = expected_calls[group_idx]
     for expected_idx, expected_tool in enumerate(expected_group):
         name = expected_tool["name"]
-        candidates = candidates_by_name.get(name, [])
+        candidates = reversed(candidates_by_name.get(name, []))
         for actual_idx in candidates:
             if actual_idx in used_actual_indices:
                 continue
