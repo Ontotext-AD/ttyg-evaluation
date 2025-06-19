@@ -2,8 +2,8 @@ import copy
 
 from ttyg_evaluation import (
     get_var_to_values,
-    sort_bindings,
-    compare_sparql_results
+    compare_sparql_results,
+    get_permutation_indices,
 )
 
 
@@ -98,108 +98,6 @@ def test_get_var_to_values():
     }
 
 
-def test_sort_bindings():
-    bindings = []
-    result = sort_bindings(bindings)
-    assert result == []
-
-    bindings = [
-        {"x": {"type": "uri", "value": "http://example.com/Person/3"}},
-        {"x": {"type": "uri", "value": "http://example.com/Person/1"}},
-        {"x": {"type": "uri", "value": "http://example.com/Person/2"}},
-    ]
-    result = sort_bindings(bindings)
-    assert result == [
-        {"x": {"type": "uri", "value": "http://example.com/Person/1"}},
-        {"x": {"type": "uri", "value": "http://example.com/Person/2"}},
-        {"x": {"type": "uri", "value": "http://example.com/Person/3"}},
-    ]
-
-    bindings = [
-        {"x": {"type": "uri", "value": "http://example.com/Person/3"}, "y": {"type": "literal", "value": "A"}},
-        {"x": {"type": "uri", "value": "http://example.com/Person/1"}, "y": {"type": "literal", "value": "C"}},
-        {"x": {"type": "uri", "value": "http://example.com/Person/2"}, "y": {"type": "literal", "value": "B"}},
-    ]
-    result = sort_bindings(bindings)
-    assert result == [
-        {"x": {"type": "uri", "value": "http://example.com/Person/1"}, "y": {"type": "literal", "value": "C"}},
-        {"x": {"type": "uri", "value": "http://example.com/Person/2"}, "y": {"type": "literal", "value": "B"}},
-        {"x": {"type": "uri", "value": "http://example.com/Person/3"}, "y": {"type": "literal", "value": "A"}},
-    ]
-
-    bindings = [
-        {
-            "x": {"type": "literal", "value": "1"},
-            "y": {"type": "literal", "value": "2"},
-            "z": {"type": "literal", "value": "C"}
-        },
-        {
-            "x": {"type": "literal", "value": "1"},
-            "y": {"type": "literal", "value": "2"},
-            "z": {"type": "literal", "value": "C"}
-        },
-        {
-            "x": {"type": "literal", "value": "1"},
-            "y": {"type": "literal", "value": "1"},
-            "z": {"type": "literal", "value": "C"}
-        },
-    ]
-    result = sort_bindings(bindings)
-    assert result == [
-        {
-            "x": {"type": "literal", "value": "1"},
-            "y": {"type": "literal", "value": "1"},
-            "z": {"type": "literal", "value": "C"}
-        },
-        {
-            "x": {"type": "literal", "value": "1"},
-            "y": {"type": "literal", "value": "2"},
-            "z": {"type": "literal", "value": "C"}
-        },
-        {
-            "x": {"type": "literal", "value": "1"},
-            "y": {"type": "literal", "value": "2"},
-            "z": {"type": "literal", "value": "C"}
-        }
-    ]
-
-    bindings = [
-        {
-            "x": {"type": "literal", "value": "1"},
-            "y": {"type": "literal", "value": "2"},
-            "z": {"type": "literal", "value": "A"}
-        },
-        {
-            "x": {"type": "literal", "value": "1"},
-            "y": {"type": "literal", "value": "2"},
-            "z": {"type": "literal", "value": "C"}
-        },
-        {
-            "x": {"type": "literal", "value": "1"},
-            "y": {"type": "literal", "value": "1"},
-            "z": {"type": "literal", "value": "C"}
-        },
-    ]
-    result = sort_bindings(bindings)
-    assert result == [
-        {
-            "x": {"type": "literal", "value": "1"},
-            "y": {"type": "literal", "value": "1"},
-            "z": {"type": "literal", "value": "C"}
-        },
-        {
-            "x": {"type": "literal", "value": "1"},
-            "y": {"type": "literal", "value": "2"},
-            "z": {"type": "literal", "value": "A"}
-        },
-        {
-            "x": {"type": "literal", "value": "1"},
-            "y": {"type": "literal", "value": "2"},
-            "z": {"type": "literal", "value": "C"}
-        }
-    ]
-
-
 def test_compare_empty_sparql_results() -> None:
     expected_sparql_results = {
         "head": {"vars": ["person", "personName"]},
@@ -259,6 +157,24 @@ def test_compare_empty_sparql_results() -> None:
         "results": {"bindings": []}
     }
     assert compare_sparql_results(expected_sparql_results, actual_sparql_results, ["person"]) == True
+
+
+def test_compare_sparql_results_ask() -> None:
+    expected_sparql_results = {"head": {}, "boolean": True}
+    actual_sparql_results = {"head": {}, "boolean": True}
+    assert compare_sparql_results(expected_sparql_results, actual_sparql_results, []) == True
+
+    expected_sparql_results = {"head": {}, "boolean": False}
+    actual_sparql_results = {"head": {}, "boolean": True}
+    assert compare_sparql_results(expected_sparql_results, actual_sparql_results, []) == False
+
+    expected_sparql_results = {"head": {}, "boolean": True}
+    actual_sparql_results = {"head": {}, "boolean": False}
+    assert compare_sparql_results(expected_sparql_results, actual_sparql_results, []) == False
+
+    expected_sparql_results = {"head": {}, "boolean": False}
+    actual_sparql_results = {"head": {}, "boolean": False}
+    assert compare_sparql_results(expected_sparql_results, actual_sparql_results, []) == True
 
 
 def test_compare_sparql_results_exactly_the_same_results_as_expected() -> None:
@@ -514,3 +430,47 @@ def test_compare_sparql_results_empty_binding_values() -> None:
         ]}
     }
     assert compare_sparql_results(expected_sparql_results, actual_sparql_results, ["x", "y"]) == True
+
+
+def test_compare_sparql_results_additional_column() -> None:
+    expected_sparql_results = {
+        "head": {"vars": ["person"]},
+        "results": {"bindings": [
+            {"person": {"type": "uri", "value": "http://example.com/Person/2"}},
+            {"person": {"type": "uri", "value": "http://example.com/Person/3"}},
+        ]}
+    }
+    actual_sparql_results = {
+        "head": {"vars": ["p", "n"]},
+        "results": {"bindings": [
+            {
+                "p": {"type": "uri", "value": "http://example.com/Person/3"},
+                "n": {"type": "literal", "value": "Alice"}
+            },
+            {
+                "p": {"type": "uri", "value": "http://example.com/Person/2"},
+                "n": {"type": "literal", "value": "Bob"}
+            },
+        ]}
+    }
+    assert compare_sparql_results(expected_sparql_results, actual_sparql_results, ["person"]) == True
+
+
+def test_get_permutation_indices() -> None:
+    assert get_permutation_indices([1], []) == []
+    assert get_permutation_indices([], [1]) == []
+
+    assert get_permutation_indices([1, 2, 3], [1]) == []
+    assert get_permutation_indices([1, 2, 3], [1, 2]) == []
+
+    assert get_permutation_indices([1, 2, 3], [1, 2, 3]) == [0, 1, 2]
+    assert get_permutation_indices([1, 2, 3], [1, 3, 2]) == [0, 2, 1]
+    assert get_permutation_indices([1, 2, 3], [2, 1, 3]) == [1, 0, 2]
+    assert get_permutation_indices([1, 2, 3], [2, 3, 1]) == [1, 2, 0]
+    assert get_permutation_indices([1, 2, 3], [3, 1, 2]) == [2, 0, 1]
+    assert get_permutation_indices([1, 2, 3], [3, 2, 1]) == [2, 1, 0]
+
+    assert get_permutation_indices([1, 1, 2, 3], [3, 1, 2, 2]) == []
+    assert get_permutation_indices([1, 1, 2, 3], [3, 1, 2, 1]) == [3, 0, 2, 1]
+
+    assert get_permutation_indices([1, None, "3"], ["3", 1, None]) == [2, 0, 1]

@@ -1,3 +1,6 @@
+from collections import Counter
+
+
 def get_var_to_values(
         vars_: list[str],
         bindings: list[dict],
@@ -13,15 +16,21 @@ def get_var_to_values(
     return dict(var_to_values)
 
 
-def sort_bindings(
-        bindings: list[dict],
-) -> list[dict]:
-    return sorted(
-        bindings,
-        key=lambda row: tuple(
-            row[var]["value"] for var in sorted(row.keys())
-        )
-    )
+def get_permutation_indices(list1: list, list2: list) -> list:
+    if len(list1) != len(list2) or Counter(list1) != Counter(list2):
+        return []
+
+    indices = []
+    used = [False] * len(list1)
+
+    for item2 in list2:
+        for i in range(len(list1)):
+            if not used[i] and list1[i] == item2:
+                indices.append(i)
+                used[i] = True
+                break
+
+    return indices
 
 
 def compare_sparql_results(
@@ -44,29 +53,45 @@ def compare_sparql_results(
     expected_vars: list[str] = expected_sparql_result["head"]["vars"]
     actual_vars: list[str] = actual_sparql_result["head"].get("vars", [])
 
-    if not actual_bindings:
-        if not expected_bindings:
-            return len(actual_vars) >= len(required_vars)
-        else:
-            return False
+    if (not actual_bindings) and (not expected_bindings):
+        return len(actual_vars) >= len(required_vars)
+    elif (not actual_bindings) or (not expected_bindings):
+        return False
 
-    if not results_are_ordered:
-        expected_bindings = sort_bindings(expected_bindings)
-        actual_bindings = sort_bindings(actual_bindings)
+    # re-order the vars, so that required come first
+    expected_vars = required_vars + [var for var in expected_vars if var not in required_vars]
+
     expected_var_to_values: dict[str, list] = get_var_to_values(expected_vars, expected_bindings)
     actual_var_to_values: dict[str, list] = get_var_to_values(actual_vars, actual_bindings)
 
+    permutation = []
     mapped_or_skipped_expected_vars, mapped_actual_vars = set(), set()
     for expected_var in expected_vars:
         expected_values = expected_var_to_values[expected_var]
         for actual_var in actual_vars:
             if actual_var not in mapped_actual_vars:
                 actual_values = actual_var_to_values[actual_var]
-                if expected_values == actual_values:
+                if not results_are_ordered:
+                    permutation_indices = get_permutation_indices(expected_values, actual_values)
+                    if permutation_indices:
+                        if permutation:
+                            if permutation_indices == permutation:
+                                mapped_or_skipped_expected_vars.add(expected_var)
+                                mapped_actual_vars.add(actual_var)
+                                break
+                        else:
+                            permutation = permutation_indices
+                            mapped_or_skipped_expected_vars.add(expected_var)
+                            mapped_actual_vars.add(actual_var)
+                            break
+                elif expected_values == actual_values:
                     mapped_or_skipped_expected_vars.add(expected_var)
                     mapped_actual_vars.add(actual_var)
                     break
-        if expected_var not in mapped_or_skipped_expected_vars and expected_var not in required_vars:
+        if expected_var not in mapped_or_skipped_expected_vars:
+            if expected_var in required_vars:
+                return False
+            # optional, we can skip it
             mapped_or_skipped_expected_vars.add(expected_var)
 
     return len(mapped_or_skipped_expected_vars) == len(expected_vars)
