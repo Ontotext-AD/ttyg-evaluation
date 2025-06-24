@@ -113,7 +113,7 @@ def compute_aggregations(samples: list[dict]) -> dict:
                 if "results" in res and "bindings" in res["results"]:
                     if not res["results"]["bindings"]:
                         tools_calls_summary_per_template[template_id]["empty_results"][tool_name] += 1
-            except json.decoder.JSONDecodeError:
+            except (json.decoder.JSONDecodeError, KeyError):
                 pass
 
     summary = {"per_template": {}}
