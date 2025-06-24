@@ -4,7 +4,7 @@
 
 # Talk to Your Graph (TTYG) Evaluation
 
-TTYG Evaluation is a Python module for evaluating whether LLM agents correctly orchestrate and invoke available 
+TTYG Evaluation is a Python module for evaluating whether LLM agents correctly orchestrate and invoke available
 tools to answer user questions, based on a gold-standard corpus of tool call expectations.
 
 ## License
@@ -33,8 +33,8 @@ A gold standard corpus is a list of templates. Each template contains:
 - `template_id` – Unique template identifier
 - `questions` – A list of questions derived from this template, where each includes:
   - `id` – Unique question identifier
-  - `nl_question` – The natural language query passed to the LLM
-  - `expected_steps` – A list of expected steps / tool calls grouped by *level*.
+  - `question_text` – The natural language query passed to the LLM
+  - `reference_steps` – A list of expected steps / tool calls grouped by *level*.
 The assumption is that the final answer to the question is derived from the outputs of the tools, which are called last (last level).
 
 Each tool call includes:
@@ -56,8 +56,8 @@ The example corpus below illustrates a minimal but realistic gold standard, show
 - template_id: list_all_transformers_within_Substation_SUBSTATION
   questions:
   - id: c10bbc8dce98a4b8832d125134a16153
-    nl_question: List all transformers within Substation OSLO
-    expected_steps:
+    question_text: List all transformers within Substation OSLO
+    reference_steps:
     - - name: sparql_query
         args:
           query: |2
@@ -84,8 +84,8 @@ The example corpus below illustrates a minimal but realistic gold standard, show
           - transformer
           - transformerName
   - id: 8bbea9a10876a04ad77a82fd2aedee40
-    nl_question: List all transformers within Substation STAVANGER
-    expected_steps:
+    question_text: List all transformers within Substation STAVANGER
+    reference_steps:
     - - name: sparql_query
         args:
           query: |2
@@ -112,8 +112,8 @@ The example corpus below illustrates a minimal but realistic gold standard, show
 - template_id: list_all_substations_within_bidding_zone_REGION
   questions:
   - id: d566b1e9da418ac83e520a66cc7af4d7
-    nl_question: List all substations within bidding zone NO2 SGR
-    expected_steps:
+    question_text: List all substations within bidding zone NO2 SGR
+    reference_steps:
     - - name: sparql_query
         args:
           query: |2
@@ -153,8 +153,8 @@ The example corpus below illustrates a minimal but realistic gold standard, show
           - substationName
         ordered: false
   - id: 03d4283773b4387114342518176b128b
-    nl_question: List all substations within bidding zone NO1 SGR
-    expected_steps:
+    question_text: List all substations within bidding zone NO1 SGR
+    reference_steps:
     - - name: sparql_query
         args:
           query: |2
@@ -205,7 +205,7 @@ Below is a sample response from the LLM agent for a single question:
     "output_tokens": 725,
     "total_tokens": 298753,
     "elapsed_sec": 46.48961806297302,
-    "tools_calls": [
+    "actual_steps": [
         {
             "name": "autocomplete_search",
             "args": {
@@ -244,7 +244,8 @@ If an error occurs, the expected response format is:
 ```json
 {
     "question_id": "a8daaf98b84b4f6b0e0052fb942bf6b6",
-    "error": "Error message"
+    "error": "Error message",
+    "status": "error"
 }
 ```
 
@@ -385,7 +386,7 @@ aggregates = compute_aggregations(evaluation_results)
 
 - `template_id` - the template id
 - `question_id` - the question id
-- `nl_question` - the natural language query
+- `question_text` - the natural language query
 - `expected_steps` - the expected tools calls as in the gold standard
 - `answer` - the LLM natural language answer
 - `actual_steps` - the actual tools calls by the LLM agent

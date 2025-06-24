@@ -32,13 +32,13 @@ def run_evaluation(
         actual_tools_calls_count_total, actual_tools_calls_error_total = defaultdict(int), defaultdict(int)
         for question in template["questions"]:
             actual_results = chat_responses[question["id"]]
-            expected_tools_calls = question["expected_steps"]
+            expected_tools_calls = question["reference_steps"]
             if "error" in actual_results:
                 evaluation_results.append({
                     "template_id": template_id,
                     "question_id": actual_results["question_id"],
-                    "nl_question": question["nl_question"],
-                    "expected_steps": expected_tools_calls,
+                    "question_text": question["question_text"],
+                    "reference_steps": expected_tools_calls,
                     "error": actual_results["error"],
                 })
                 continue
@@ -54,8 +54,8 @@ def run_evaluation(
             evaluation_results.append({
                 "template_id": template_id,
                 "question_id": actual_results["question_id"],
-                "nl_question": question["nl_question"],
-                "expected_steps": expected_tools_calls,
+                "question_text": question["question_text"],
+                "reference_steps": expected_tools_calls,
                 "answer": actual_results["answer"],
                 "actual_steps": actual_tools_calls,
                 "answer_score": score,
