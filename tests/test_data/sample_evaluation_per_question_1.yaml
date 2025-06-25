@@ -28,7 +28,7 @@
         - transformer
         - transformerName
       matches: call_3b3zHJnBXwYYSg04BiFGAAgO
-  answer: |-
+  actual_answer: |-
     The following transformers are located within the Substation OSLO:
 
     1. **OSLO T2** (IRI: `urn:uuid:f1769de8-9aeb-11e5-91da-b8763fd99c5f`)
@@ -145,7 +145,7 @@
         - transformer
         - transformerName
       matches: call_bU771FWvXCE8lbGdJnIWo8Y3
-  answer: |-
+  actual_answer: |-
     The following transformer is located within the Substation STAVANGER:
 
     - **Transformer Name**: STAVANGET1
@@ -253,7 +253,7 @@
         - transformer
         - transformerName
       matches: call_BiQmXPFgnucXzieEE2qI7Z2D
-  answer: |-
+  actual_answer: |-
     The following transformer is located within the Substation HALDEN:
 
     - **Transformer Name**: HALDEN T1
@@ -360,7 +360,7 @@
         - transformer
         - transformerName
       matches: call_auWCGCafNRtPefQERtlTnPVL
-  answer: |-
+  actual_answer: |-
     The following transformer is located within the Substation ASKER:
 
     - **ASKER T1** (IRI: `urn:uuid:f1769dfa-9aeb-11e5-91da-b8763fd99c5f`)
@@ -465,7 +465,7 @@
       required_columns:
         - transformer
         - transformerName
-  answer: It seems there is no substation named "Substation MO" in the dataset. Please
+  actual_answer: It seems there is no substation named "Substation MO" in the dataset. Please
     verify the name or provide additional details.
   actual_steps:
   - name: autocomplete_search
@@ -519,7 +519,7 @@
         - transformer
         - transformerName
       matches: call_gezD7HT5vzre65JR3tw5eW3e
-  answer: |-
+  actual_answer: |-
     The transformer within the Substation ARENDAL is:
 
     - **ARENDAL T1** (IRI: `urn:uuid:f1769e1e-9aeb-11e5-91da-b8763fd99c5f`)
@@ -626,7 +626,7 @@
         - transformerName
       ordered: false
       matches: call_WAHVRazRhBCyXubKoWJF4OWw
-  answer: |-
+  actual_answer: |-
     The following transformer is located within the Substation KVILLDAL:
 
     - **Transformer Name:** KVILLDALT1
@@ -734,7 +734,7 @@
         - transformerName
       ordered: false
       matches: call_odKEKQ2vrQTV6Dp2E6rgQMX0
-  answer: |-
+  actual_answer: |-
     The following transformer is located within the Substation SIMA:
 
     - **Transformer Name:** SIMA T1
@@ -841,7 +841,7 @@
         - transformer
         - transformerName
       ordered: false
-  answer: It seems that there is no substation named "AJAURE" in the dataset. Please
+  actual_answer: It seems that there is no substation named "AJAURE" in the dataset. Please
     verify the name or provide additional details.
   actual_steps:
   - name: autocomplete_search
@@ -896,7 +896,7 @@
         - transformerName
       ordered: false
       matches: call_z1PCjZWZIOgMZcMlz6HwN9j9
-  answer: |-
+  actual_answer: |-
     The following transformer is located within the Substation HOGASEN:
 
     - **HOGASEN T1** (IRI: `urn:uuid:f1769d7c-9aeb-11e5-91da-b8763fd99c5f`)
@@ -1016,7 +1016,7 @@
         - substation
         - substationName
       ordered: false
-  answer: It seems that there is no bidding zone named "NO2 SGR" in the dataset. Could
+  actual_answer: It seems that there is no bidding zone named "NO2 SGR" in the dataset. Could
     you verify the name or provide additional details?
   actual_steps:
   - name: autocomplete_search
@@ -1084,7 +1084,7 @@
         - substation
         - substationName
       ordered: false
-  answer: It seems there is no bidding zone explicitly named "NO1 SGR" in the dataset.
+  actual_answer: It seems there is no bidding zone explicitly named "NO1 SGR" in the dataset.
     Could you clarify or provide additional details?
   actual_steps:
   - name: autocomplete_search
@@ -1148,7 +1148,7 @@
         - substation
         - substationName
       ordered: false
-  answer: It seems that there is no bidding zone named "NO5 SGR" in the dataset. Please
+  actual_answer: It seems that there is no bidding zone named "NO5 SGR" in the dataset. Please
     verify the name or provide additional details.
   actual_steps:
   - name: autocomplete_search
@@ -1213,7 +1213,7 @@
         - substation
         - substationName
       ordered: false
-  answer: It seems that there is no bidding zone explicitly named "SE3 SGR" in the
+  actual_answer: It seems that there is no bidding zone explicitly named "SE3 SGR" in the
     dataset. Could you clarify or provide additional details about the bidding zone?
   actual_steps:
   - name: autocomplete_search
@@ -1276,7 +1276,7 @@
         - substation
         - substationName
       ordered: false
-  answer: I couldn't find a bidding zone named "SE2 SGR" in the dataset. Could you
+  actual_answer: I couldn't find a bidding zone named "SE2 SGR" in the dataset. Could you
     verify the name or provide additional details?
   actual_steps:
   - name: autocomplete_search
@@ -1337,7 +1337,7 @@
         - substation
         - substationName
       ordered: false
-  answer: It seems there is no bidding zone named "FI1 SGR" in the dataset. Please
+  actual_answer: It seems there is no bidding zone named "FI1 SGR" in the dataset. Please
     verify the name or provide additional details.
   actual_steps:
   - name: autocomplete_search
@@ -1396,7 +1396,7 @@
         - substation
         - substationName
       ordered: false
-  answer: It seems there is no bidding zone named "SE4 SGR" in the dataset. Could
+  actual_answer: It seems there is no bidding zone named "SE4 SGR" in the dataset. Could
     you verify the name or provide additional details?
   actual_steps:
   - name: autocomplete_search
@@ -1453,7 +1453,7 @@
         - substation
         - substationName
       ordered: false
-  answer: It seems that there is no bidding zone explicitly named "NO4 SGR" in the
+  actual_answer: It seems that there is no bidding zone explicitly named "NO4 SGR" in the
     dataset. Could you clarify or provide additional details?
   actual_steps:
   - name: autocomplete_search
@@ -1508,7 +1508,7 @@
         - substation
         - substationName
       ordered: false
-  answer: It seems there is no bidding zone named "NO3 SGR" in the dataset. Please
+  actual_answer: It seems there is no bidding zone named "NO3 SGR" in the dataset. Please
     verify the name or provide additional details.
   actual_steps:
   - name: autocomplete_search
@@ -1563,7 +1563,7 @@
         - substation
         - substationName
       ordered: false
-  answer: It seems there is no bidding zone named "SE1 SGR" in the dataset. Could
+  actual_answer: It seems there is no bidding zone named "SE1 SGR" in the dataset. Could
     you verify the name or provide additional details?
   actual_steps:
   - name: autocomplete_search
@@ -1785,7 +1785,7 @@
         - substation2Name
       ordered: false
       matches: call_Qm1mzX7g5q9SVPrR2QzEMTp3
-  answer: |-
+  actual_answer: |-
     The substations connected to the substation "STAVANGER" via AC or DC lines are:
 
     1. **KRISTIANSAND** via line "LC 300KRISTIAN-STAVANGE"
@@ -2282,7 +2282,7 @@
         - substation2Name
       ordered: false
       matches: call_gGTDCfS6ZCXRYhspRS6npaza
-  answer: |-
+  actual_answer: |-
     The following substations are connected to the substation "OSLO" via AC or DC lines:
 
     1. **SYLLING**
@@ -2782,7 +2782,7 @@
         - substation2Name
       ordered: false
       matches: call_wW19tbCUCosEip8nXzv3bZIY
-  answer: |-
+  actual_answer: |-
     The following substations are connected to the substation "HAGAFOSS" via AC or DC lines:
 
     1. **STAVANGER** via:
@@ -3261,7 +3261,7 @@
         - substation2Name
       ordered: false
       matches: call_19FFwedhrsq52ukf933jTHaZ
-  answer: |-
+  actual_answer: |-
     The following substations are connected to the substation "HALDEN" via AC or DC lines:
 
     1. **TRONDHEIM**
@@ -3643,7 +3643,7 @@
         - substation2Name
       ordered: false
       matches: call_23BAjs9gOwFBBVyRVSyiTcOO
-  answer: |-
+  actual_answer: |-
     The following substations are connected to the substation "SYLLING" via AC or DC lines:
 
     1. **OSLO**
@@ -4004,7 +4004,7 @@
         - substation2Name
       ordered: false
       matches: call_BznbZ7dKanrpWY7PLN05sDVp
-  answer: |-
+  actual_answer: |-
     The following substations are connected to the substation "ASKER" via AC or DC lines:
 
     1. **HALDEN**
@@ -4363,7 +4363,7 @@
         - substation2Name
       ordered: false
       matches: call_nYqVT45DYeE85lt0kIbDRAXm
-  answer: |-
+  actual_answer: |-
     The following substations are connected to the substation "SIMA" via AC or DC lines:
 
     1. **Substation Name:** BLAFALLI
@@ -4699,7 +4699,7 @@
         - substation2Name
       ordered: false
       matches: call_WHrJZpd1YR9KuApVYrDEZcVx
-  answer: |-
+  actual_answer: |-
     The substations connected to the substation "PORJUS" via AC or DC lines are:
 
     1. **FORSMARK** via line **LC 420FORSMARK-PORJUS**
@@ -5030,7 +5030,7 @@
         - substation2Name
       ordered: false
       matches: call_KNqRxMaFDHFDn5REFvSE1evQ
-  answer: |-
+  actual_answer: |-
     The substations connected to the substation "AURLAND" via AC or DC lines are:
 
     1. **EIDFJORD** via line "LC 420AURLAND-EIDFJORD"
@@ -5364,7 +5364,7 @@
         - substation2
         - substation2Name
       ordered: false
-  answer: I could not find any bidding zones named "NO2 SGR" or "NO5 SGR" in the dataset.
+  actual_answer: I could not find any bidding zones named "NO2 SGR" or "NO5 SGR" in the dataset.
     Please verify the names or provide additional details.
   actual_steps:
   - name: autocomplete_search
@@ -5523,7 +5523,7 @@
         - substation2
         - substation2Name
       ordered: false
-  answer: I could not find any bidding zones named "NO5 SGR" or "NO2 SGR" in the dataset.
+  actual_answer: I could not find any bidding zones named "NO5 SGR" or "NO2 SGR" in the dataset.
     Please verify the names or provide additional details.
   actual_steps:
   - name: autocomplete_search
@@ -5664,7 +5664,7 @@
         - substation2
         - substation2Name
       ordered: false
-  answer: I could not find any bidding zones named "NO2 SGR" or "NO1 SGR" in the dataset.
+  actual_answer: I could not find any bidding zones named "NO2 SGR" or "NO1 SGR" in the dataset.
     Please verify the names or provide additional details.
   actual_steps:
   - name: autocomplete_search
@@ -5805,7 +5805,7 @@
         - substation2
         - substation2Name
       ordered: false
-  answer: It seems that I couldn't find any bidding zones named "NO1 SGR" or "NO2
+  actual_answer: It seems that I couldn't find any bidding zones named "NO1 SGR" or "NO2
     SGR" in the dataset. Please verify the names or provide additional details.
   actual_steps:
   - name: autocomplete_search
@@ -5930,7 +5930,7 @@
         - substation2
         - substation2Name
       ordered: false
-  answer: I could not find any bidding zones named "SE2 SGR" or "SE3 SGR" in the dataset.
+  actual_answer: I could not find any bidding zones named "SE2 SGR" or "SE3 SGR" in the dataset.
     Please verify the names or provide additional details.
   actual_steps:
   - name: autocomplete_search
@@ -6056,7 +6056,7 @@
         - substation2
         - substation2Name
       ordered: false
-  answer: I could not find any bidding zones named "SE3 SGR" or "SE2 SGR" in the dataset.
+  actual_answer: I could not find any bidding zones named "SE3 SGR" or "SE2 SGR" in the dataset.
     Please verify the names or provide additional details.
   actual_steps:
   - name: autocomplete_search
@@ -6174,7 +6174,7 @@
         - substation2
         - substation2Name
       ordered: false
-  answer: I could not find any bidding zones named "NO1 SGR" or "NO5 SGR" in the dataset.
+  actual_answer: I could not find any bidding zones named "NO1 SGR" or "NO5 SGR" in the dataset.
     Please verify the names or provide additional details.
   actual_steps:
   - name: autocomplete_search
@@ -6293,7 +6293,7 @@
         - substation2
         - substation2Name
       ordered: false
-  answer: I could not find any bidding zones named "NO5 SGR" or "NO1 SGR" in the dataset.
+  actual_answer: I could not find any bidding zones named "NO5 SGR" or "NO1 SGR" in the dataset.
     Please verify the names or provide additional details.
   actual_steps:
   - name: autocomplete_search
@@ -6395,7 +6395,7 @@
         - substation2
         - substation2Name
       ordered: false
-  answer: I could not find any bidding zones named "SE4 SGR" or "SE3 SGR" in the dataset.
+  actual_answer: I could not find any bidding zones named "SE4 SGR" or "SE3 SGR" in the dataset.
     Please verify the names or provide additional details.
   actual_steps:
   - name: autocomplete_search
@@ -6497,7 +6497,7 @@
         - substation2
         - substation2Name
       ordered: false
-  answer: I could not find any bidding zones named "SE1 SGR" or "SE2 SGR" in the dataset.
+  actual_answer: I could not find any bidding zones named "SE1 SGR" or "SE2 SGR" in the dataset.
     Please verify the names or provide additional details.
   actual_steps:
   - name: autocomplete_search

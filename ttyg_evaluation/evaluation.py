@@ -56,7 +56,7 @@ def run_evaluation(
                 "question_id": actual_results["question_id"],
                 "question_text": question["question_text"],
                 "reference_steps": expected_tools_calls,
-                "answer": actual_results["answer"],
+                "actual_answer": actual_results["actual_answer"],
                 "actual_steps": actual_tools_calls,
                 "answer_score": score,
                 "input_tokens": actual_results["input_tokens"],
