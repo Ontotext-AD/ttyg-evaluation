@@ -265,8 +265,8 @@ aggregates = compute_aggregations(evaluation_results)
 ```yaml
 - template_id: list_all_transformers_within_Substation_SUBSTATION
   question_id: c10bbc8dce98a4b8832d125134a16153
-  nl_question: List all transformers within Substation OSLO
-  expected_steps:
+  question_text: List all transformers within Substation OSLO
+  reference_steps:
   - - name: sparql_query
       args:
         query: |2
@@ -387,7 +387,7 @@ aggregates = compute_aggregations(evaluation_results)
 - `template_id` - the template id
 - `question_id` - the question id
 - `question_text` - the natural language query
-- `expected_steps` - the expected tools calls as in the gold standard
+- `reference_steps` - the expected tools calls as in the gold standard
 - `answer` - the LLM natural language answer
 - `actual_steps` - the actual tools calls by the LLM agent
 - `answer_score` - a real number between 0 and 1. It's calculated by comparing the results of the last tools calls, which are expected.
