@@ -1,11 +1,11 @@
 [tool.poetry]
-name = "ttyg-evaluation"
+name = "qa-eval"
 version = "2.1.2"
-description = "Talk to Your Graph (TTYG) Evaluation is a Python module for evaluating whether LLM agents correctly orchestrate and invoke available tools to answer user questions, based on a gold-standard corpus of tool call expectations."
+description = "For assessing question answering systems' final answers and intermediate steps, against a given set of questions, reference answers and steps."
 authors = []
 readme = "README.md"
 license = "Apache-2.0"
-repository = "https://github.com/Ontotext-AD/ttyg-evaluation"
+repository = "https://github.com/Ontotext-AD/qa-eval"
 
 [tool.poetry.dependencies]
 conda-lock = "3.0.1"
