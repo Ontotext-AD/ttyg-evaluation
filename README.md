@@ -223,7 +223,7 @@ Below is a sample response from the LLM agent for a single question:
             },
             "id": "call_DbMkZ8kv3qkf49wNNdREkpRN",
             "status": "error",
-            "output": "Error: ValueError('The following prefixes are undefined: urn')\n Please fix your mistakes."
+            "error": "Error: ValueError('The following prefixes are undefined: urn')\n Please fix your mistakes."
         },
         {
             "name": "sparql_query",
