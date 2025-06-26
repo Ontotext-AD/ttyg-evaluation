@@ -32,13 +32,13 @@ def run_evaluation(
         actual_tools_calls_count_total, actual_tools_calls_error_total = defaultdict(int), defaultdict(int)
         for question in template["questions"]:
             actual_results = chat_responses[question["id"]]
-            expected_tools_calls = question["expected_steps"]
+            expected_tools_calls = question["reference_steps"]
             if "error" in actual_results:
                 evaluation_results.append({
                     "template_id": template_id,
                     "question_id": actual_results["question_id"],
-                    "nl_question": question["nl_question"],
-                    "expected_steps": expected_tools_calls,
+                    "question_text": question["question_text"],
+                    "reference_steps": expected_tools_calls,
                     "error": actual_results["error"],
                 })
                 continue
@@ -54,9 +54,9 @@ def run_evaluation(
             evaluation_results.append({
                 "template_id": template_id,
                 "question_id": actual_results["question_id"],
-                "nl_question": question["nl_question"],
-                "expected_steps": expected_tools_calls,
-                "answer": actual_results["answer"],
+                "question_text": question["question_text"],
+                "reference_steps": expected_tools_calls,
+                "actual_answer": actual_results["actual_answer"],
                 "actual_steps": actual_tools_calls,
                 "answer_score": score,
                 "input_tokens": actual_results["input_tokens"],
@@ -113,7 +113,7 @@ def compute_aggregations(samples: list[dict]) -> dict:
                 if "results" in res and "bindings" in res["results"]:
                     if not res["results"]["bindings"]:
                         tools_calls_summary_per_template[template_id]["empty_results"][tool_name] += 1
-            except json.decoder.JSONDecodeError:
+            except (json.decoder.JSONDecodeError, KeyError):
                 pass
 
     summary = {"per_template": {}}
