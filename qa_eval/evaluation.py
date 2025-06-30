@@ -4,9 +4,10 @@ from statistics import mean, median
 from typing import Any
 
 from .tools_calls_comparison import get_tools_calls_matches
+from .retrieval_evaluation import recall_at_k
 
 
-def compute_answer_score(
+def evaluate_steps(
         expected_tools_calls: list[list[dict]],
         actual_tools_calls: list[dict]
 ) -> float:
@@ -17,9 +18,14 @@ def compute_answer_score(
         matches_by_group[expected_group_idx].append(expected_match_idx)
         expected_tools_calls[expected_group_idx][expected_match_idx]["matches"] = actual_tools_calls[actual_idx]["id"]
     # for now care only for the last group of tools; iterate over the other groups, when we have more tools
-    last_group = -1
-    score = len(matches_by_group[last_group]) / len(expected_tools_calls[last_group])
-    return score
+    group_ix = -1
+    if expected_tools_calls[group_ix]:
+        if expected_tools_calls[group_ix][0]["name"] == "retrieval":
+            expected_output = expected_tools_calls[group_ix][0]["output"]
+            actual_output = actual_tools_calls[0]["output"]
+            k = expected_tools_calls[group_ix][0]["args"]["k"]
+            return recall_at_k(expected_output, actual_output, k)
+    return len(matches_by_group[group_ix]) / len(expected_tools_calls[group_ix])
 
 
 def run_evaluation(
@@ -44,7 +50,7 @@ def run_evaluation(
                 continue
 
             actual_tools_calls = actual_results["tools_calls"]
-            score = compute_answer_score(expected_tools_calls, actual_tools_calls)
+            score = evaluate_steps(expected_tools_calls, actual_tools_calls)
 
             for tool_call in actual_tools_calls:
                 actual_tools_calls_count_total[tool_call["name"]] += 1
