@@ -5,23 +5,23 @@ from .sparql_results_comparison import compare_sparql_results
 
 
 def compare_tools_outputs(
-        reference_tool: dict,
-        actual_tool: dict
+        reference: dict,
+        actual: dict
 ) -> bool:
-    if "output_media_type" in reference_tool:
-        if reference_tool["output_media_type"] in {"application/sparql-results+json", "application/json"}:
-            reference_tool_output = json.loads(reference_tool["output"])
-            actual_tool_output = json.loads(actual_tool["output"])
-            if reference_tool["output_media_type"] == "application/sparql-results+json":
+    if "output_media_type" in reference:
+        if reference["output_media_type"] in {"application/sparql-results+json", "application/json"}:
+            reference_output_str = json.loads(reference["output"])
+            actual_output_str = json.loads(actual["output"])
+            if reference["output_media_type"] == "application/sparql-results+json":
                 return compare_sparql_results(
-                    reference_tool_output,
-                    actual_tool_output,
-                    reference_tool["required_columns"],
-                    reference_tool.get("ordered", False),
+                    reference_output_str,
+                    actual_output_str,
+                    reference["required_columns"],
+                    reference.get("ordered", False),
                 )
             else:
-                return reference_tool_output == actual_tool_output
-    return reference_tool["output"] == actual_tool["output"]
+                return reference_output_str == actual_output_str
+    return reference["output"] == actual["output"]
 
 
 def match_group_by_output(
@@ -45,7 +45,6 @@ def match_group_by_output(
                 matches.append(((group_idx, reference_idx), actual_idx))
                 used_actual_indices.add(actual_idx)
                 break
-
     return matches
 
 
