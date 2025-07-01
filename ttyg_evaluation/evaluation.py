@@ -39,6 +39,7 @@ def run_evaluation(
                     "question_id": actual_results["question_id"],
                     "question_text": question["question_text"],
                     "reference_steps": expected_tools_calls,
+                    "status": "error",
                     "error": actual_results["error"],
                 })
                 continue
@@ -52,6 +53,7 @@ def run_evaluation(
                     actual_tools_calls_error_total[tool_call["name"]] += 1
 
             evaluation_results.append({
+                "status": "success",
                 "template_id": template_id,
                 "question_id": actual_results["question_id"],
                 "question_text": question["question_text"],
