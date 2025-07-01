@@ -110,13 +110,14 @@ def compute_aggregations(samples: list[dict]) -> dict:
                 seen.add(tool_name)
                 tools_calls_summary_per_template[template_id]["once_per_sample"][tool_name] += 1
 
-            try:
-                res = json.loads(tool["output"])
-                if "results" in res and "bindings" in res["results"]:
-                    if not res["results"]["bindings"]:
-                        tools_calls_summary_per_template[template_id]["empty_results"][tool_name] += 1
-            except (json.decoder.JSONDecodeError, KeyError):
-                pass
+            if tool["status"] != "error":
+                try:
+                    res = json.loads(tool["output"])
+                    if "results" in res and "bindings" in res["results"]:
+                        if not res["results"]["bindings"]:
+                            tools_calls_summary_per_template[template_id]["empty_results"][tool_name] += 1
+                except json.decoder.JSONDecodeError:
+                    pass
 
     summary = {"per_template": {}}
 
