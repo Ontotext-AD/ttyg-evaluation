@@ -7,18 +7,18 @@ from .tools_calls_comparison import get_tools_calls_matches
 
 
 def compute_answer_score(
-        expected_tools_calls: list[list[dict]],
+        reference_tools_calls: list[list[dict]],
         actual_tools_calls: list[dict]
 ) -> float:
-    matches = get_tools_calls_matches(expected_tools_calls, actual_tools_calls)
+    matches = get_tools_calls_matches(reference_tools_calls, actual_tools_calls)
     matches_by_group = defaultdict(list)
     for match in matches:
-        (expected_group_idx, expected_match_idx), actual_idx = match
-        matches_by_group[expected_group_idx].append(expected_match_idx)
-        expected_tools_calls[expected_group_idx][expected_match_idx]["matches"] = actual_tools_calls[actual_idx]["id"]
+        (reference_group_idx, reference_match_idx), actual_idx = match
+        matches_by_group[reference_group_idx].append(reference_match_idx)
+        reference_tools_calls[reference_group_idx][reference_match_idx]["matches"] = actual_tools_calls[actual_idx]["id"]
     # for now care only for the last group of tools; iterate over the other groups, when we have more tools
     last_group = -1
-    score = len(matches_by_group[last_group]) / len(expected_tools_calls[last_group])
+    score = len(matches_by_group[last_group]) / len(reference_tools_calls[last_group])
     return score
 
 
@@ -32,20 +32,20 @@ def run_evaluation(
         actual_tools_calls_count_total, actual_tools_calls_error_total = defaultdict(int), defaultdict(int)
         for question in template["questions"]:
             actual_results = chat_responses[question["id"]]
-            expected_tools_calls = question["reference_steps"]
+            reference_tools_calls = question["reference_steps"]
             if "error" in actual_results:
                 evaluation_results.append({
                     "template_id": template_id,
                     "question_id": actual_results["question_id"],
                     "question_text": question["question_text"],
-                    "reference_steps": expected_tools_calls,
+                    "reference_steps": reference_tools_calls,
                     "status": "error",
                     "error": actual_results["error"],
                 })
                 continue
 
             actual_tools_calls = actual_results["tools_calls"]
-            score = compute_answer_score(expected_tools_calls, actual_tools_calls)
+            score = compute_answer_score(reference_tools_calls, actual_tools_calls)
 
             for tool_call in actual_tools_calls:
                 actual_tools_calls_count_total[tool_call["name"]] += 1
@@ -57,7 +57,7 @@ def run_evaluation(
                 "template_id": template_id,
                 "question_id": actual_results["question_id"],
                 "question_text": question["question_text"],
-                "reference_steps": expected_tools_calls,
+                "reference_steps": reference_tools_calls,
                 "actual_answer": actual_results["actual_answer"],
                 "actual_steps": actual_tools_calls,
                 "answer_score": score,
